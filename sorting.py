@@ -39,6 +39,8 @@ class SortingAlgorithm():
             for part in _list:
                 splt_estab_list[key].append(part)
         return splt_estab_list
+    def sortByCategory(self, _list):
+        categories = {""}
 
 
 if __name__ == "__main__":
