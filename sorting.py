@@ -20,8 +20,10 @@ class SortingAlgorithm():
     def checkListIntegrity(self, _lists):
         for part in _lists:
             try:
-                part["id"]
-                part["category"]
+                if part["id"] == "":
+                    return "Error"
+                if part["category"] == "":
+                    return "Error"
                 #....
             except KeyError:
                 return "Error"
