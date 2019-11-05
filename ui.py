@@ -7,12 +7,15 @@ class MainUi(QWidget):
     def __init__(self):
         self.app = QApplication(sys.argv)
         super().__init__()
+        self.fullscreen = True
         self.style_sheet = self.loadStyleSheet()
         self.setStyleSheet(self.style_sheet)
         self.setupWindow()
         self.mainVue()
-        #self.showFullScreen()
-        self.show()
+        if self.fullscreen:
+            self.showFullScreen()
+        else:
+            self.show()
         sys.exit(self.app.exec_())
     def loadStyleSheet(self):
         style_name = "white_style"

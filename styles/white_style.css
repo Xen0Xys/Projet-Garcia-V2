@@ -1,13 +1,17 @@
-QWidget{
-	background: #000;
+QWidget {
+   background-color: #DDDDDD;
+   font: bold italic large "Sunflower"
 }
 
-QPushButton{
-	border-radius:12px 0 12px 0;
-	background: #f5f5f5;
-	border:none;
-	color:#555;
-	font:bold 12px Verdana;
-	padding:6px 0 6px 0;
-	box-shadow:1px 1px 3px #999;
+QPushButton {
+   background-color: #00BDFF;
+   color: #222222;
+   border-radius: 10%;
+   border-style: none;
+   height: 25px;
+   border: 1px solid #555555;
+}
+
+QPushButton:hover{
+   background-color: #00E8FF;
 }
