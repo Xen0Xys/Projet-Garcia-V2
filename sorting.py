@@ -1,3 +1,9 @@
+"""
+Etapes:
+Faire les equipes
+
+"""
+
 class SortingAlgorithm():
     def __init__(self, *_lists):
         self.to_return = []
