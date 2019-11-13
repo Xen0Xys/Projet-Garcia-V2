@@ -1,6 +1,7 @@
 """
 Etapes:
-Faire les equipes
+Rassembler les equipes
+Composer les poules
 
 """
 
