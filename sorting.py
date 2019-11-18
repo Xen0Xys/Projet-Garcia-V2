@@ -4,6 +4,19 @@ Rassembler les equipes
 Composer les poules
 
 """
+class SortingAlgorithmV2():
+    def __init__(self):
+        pass
+    def checkListIntegrity(self, _lists):
+        for part in _lists:
+            try:
+                if part["id"] == "":
+                    return "Error"
+                if part["category"] == "":
+                    return "Error"
+                #....
+            except KeyError:
+                return "Error"
 
 class SortingAlgorithm():
     def __init__(self, *_lists):
