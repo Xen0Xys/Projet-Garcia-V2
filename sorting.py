@@ -5,18 +5,60 @@ Composer les poules
 
 """
 class SortingAlgorithmV2():
-    def __init__(self):
-        pass
+    def __init__(self, _list):
+        if self.checkListIntegrity(_list) == None:
+            pass
     def checkListIntegrity(self, _lists):
         for part in _lists:
             try:
                 if part["id"] == "":
                     return "Error"
-                if part["category"] == "":
+                if part["last_name"] == "":
                     return "Error"
-                #....
+                if part["first_name"] == "":
+                    return "Error"
+                if part["name_establishment"] == "":
+                    return "Error"
+                if part["team_number"] == "":
+                    return "Error"
+                if part["license_number"] == "":
+                    return "Error"
             except KeyError:
                 return "Error"
+    def classTeamsByEstablishment(self, _list):
+        def listEstablishments(_list):
+            estab_list = []
+            for player in _list:
+                if player[""] not in estab_list: #Definir une fonction avec un seuil d'acceptation
+                    estab_list.append(player[""])
+            return estab_list
+        def determinMaxTeamsByEstablishment(_list, _estab_list):
+            numbers = {}
+            to_return = {}
+            for estab in _estab_list:
+                numbers[estab] = [0]
+            for player in _list:
+                try:
+                    numbers[player["name_establishment"]][player["team_number"]] += 1
+                except IndexError:
+                    while len(numbers[player["name_establishment"]]) < [player["team_number"]]:
+                        numbers[player["name_establishment"]].append[0]
+                    numbers[player["name_establishment"]][player["team_number"]] += 1
+            for estab_name in numbers.keys():
+                to_return[estab_name] = len(numbers[estab_name])
+            return to_return
+
+        estab_list = listEstablishments(_list)
+        teams = {}
+        estab_nbre = determinMaxTeamsByEstablishment(_list, estab_list)
+        for estab_name in estab_nbre.keys(): #setup good numbers of lists in each "teams" indexs
+            for _ in len(estab_nbre[estab_name]):
+                teams[estab_name].append([])
+        for player in _list:
+            pass #Do traitment
+
+        
+
 
 class SortingAlgorithm():
     def __init__(self, *_lists):
