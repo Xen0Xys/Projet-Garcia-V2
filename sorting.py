@@ -4,10 +4,13 @@ Rassembler les equipes
 Composer les poules
 
 """
+class IntegrityError(Exception):
+    """Raised when list's integrity not guaranted"""
+    pass
+
 class SortingAlgorithmV2():
     def __init__(self, _list):
-        if self.checkListIntegrity(_list) == None:
-            pass
+        pass
     def doTraitment(self, _list):
         teams =  self.doTeams(_list)
         teams_nbre = self.countTeams(teams)
@@ -19,19 +22,19 @@ class SortingAlgorithmV2():
         for part in _lists:
             try:
                 if part["id"] == "":
-                    return "Error"
+                    raise IntegrityError
                 if part["last_name"] == "":
-                    return "Error"
+                    raise IntegrityError
                 if part["first_name"] == "":
-                    return "Error"
+                    raise IntegrityError
                 if part["name_establishment"] == "":
-                    return "Error"
+                    raise IntegrityError
                 if part["team_number"] == "":
-                    return "Error"
+                    raise IntegrityError
                 if part["license_number"] == "":
-                    return "Error"
+                    raise IntegrityError
             except KeyError:
-                return "Error"
+                raise IntegrityError
     def doTeams(self, _list):
         def listEstablishments(_list):
             estab_list = []
@@ -70,6 +73,8 @@ class SortingAlgorithmV2():
         for estab_name in _teams_list.keys():
             teams_nbre += len(_teams_list[estab_name])
         return teams_nbre
+    def doHens(self, _teams_list):
+        pass
 
         
 
@@ -154,5 +159,6 @@ class SortingAlgorithm():
 
 
 if __name__ == "__main__":
+    raise IntegrityError
     list = ["a", "b"]
     s_a_object = SortingAlgorithm(list)
