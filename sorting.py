@@ -8,6 +8,13 @@ class SortingAlgorithmV2():
     def __init__(self, _list):
         if self.checkListIntegrity(_list) == None:
             pass
+    def doTraitment(self, _list):
+        teams =  self.doTeams(_list)
+        teams_nbre = self.countTeams(teams)
+        if teams_nbre % 2 == 0:
+            hens_nbre = teams_nbre / 2
+        else:
+            hens_nbre = (teams_nbre - 1) / 2 #Hens + 1 team
     def checkListIntegrity(self, _lists):
         for part in _lists:
             try:
@@ -25,7 +32,7 @@ class SortingAlgorithmV2():
                     return "Error"
             except KeyError:
                 return "Error"
-    def classTeamsByEstablishment(self, _list):
+    def doTeams(self, _list):
         def listEstablishments(_list):
             estab_list = []
             for player in _list:
@@ -52,10 +59,17 @@ class SortingAlgorithmV2():
         teams = {}
         estab_nbre = determinMaxTeamsByEstablishment(_list, estab_list)
         for estab_name in estab_nbre.keys(): #setup good numbers of lists in each "teams" indexs
+            teams[estab_name] = []
             for _ in len(estab_nbre[estab_name]):
                 teams[estab_name].append([])
         for player in _list:
-            pass #Do traitment
+            teams[player["name_establishment"]][player["team_number"]].append(player)
+        return teams
+    def countTeams(self, _teams_list):
+        teams_nbre = 0
+        for estab_name in _teams_list.keys():
+            teams_nbre += len(_teams_list[estab_name])
+        return teams_nbre
 
         
 
