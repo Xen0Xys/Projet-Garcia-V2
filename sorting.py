@@ -14,11 +14,9 @@ class SortingAlgorithmV2():
     def doTraitment(self, _list):
         print("[INFO] : Starting traitment. (doTraitment function in SortingAlgorithmV2 class)")
         teams =  self.doTeams(_list)
-        teams_nbre = self.countTeams(teams)
-        if teams_nbre % 2 == 0:
-            hens_nbre = teams_nbre / 2
-        else:
-            hens_nbre = (teams_nbre - 1) / 2 #Hens + 1 team
+        #teams_nbre = self.countTeams(teams)
+        flat_teams_list = self.flattenTeamsList(teams)
+        hens_1, hens_2 = self.doHens(flat_teams_list)
     def checkListIntegrity(self, _lists):
         print("[INFO] : Checking list integrity. (checkListIntegrity function in SortingAlgorithmV2 class)")
         keys = ["id", "last_name", "first_name", "name_establishment", "team_number", "license_number"]
@@ -75,9 +73,22 @@ class SortingAlgorithmV2():
         for estab_name in _teams_list.keys():
             teams_nbre += len(_teams_list[estab_name])
         return teams_nbre
-    def composeTeamsFormat(self, _teams_nbre):
-        pass
-    def doHens(self, _teams_list):
+    def flattenTeamsList(self, _teams_list):
+        flat_teams_list = []
+        for estab in _teams_list.keys():
+            for team in _teams_list[estab]:
+                flat_teams_list.append(team)
+        return flat_teams_list
+    def doHens(self, _flat_teams_list):
+        hens_1 = []
+        hens_2 = []
+        for i in range(len(_flat_teams_list)):
+            if i % 2 == 0:
+                hens_1.append(_flat_teams_list[i])
+            else:
+                hens_2.append(_flat_teams_list[i])
+        return hens_1, hens_2
+    def doHensMatchs(self, _hens):
         pass
 
         
