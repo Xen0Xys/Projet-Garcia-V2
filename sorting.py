@@ -5,13 +5,14 @@ Composer les poules
 
 """
 class IntegrityError(Exception):
-    """Raised when list's integrity not guaranted"""
+    """Raised when list's integrity was not guaranted"""
     pass
 
 class SortingAlgorithmV2():
     def __init__(self, _list):
         pass
     def doTraitment(self, _list):
+        print("[INFO] : Starting traitment. (doTraitment function in SortingAlgorithmV2 class)")
         teams =  self.doTeams(_list)
         teams_nbre = self.countTeams(teams)
         if teams_nbre % 2 == 0:
@@ -19,30 +20,30 @@ class SortingAlgorithmV2():
         else:
             hens_nbre = (teams_nbre - 1) / 2 #Hens + 1 team
     def checkListIntegrity(self, _lists):
+        print("[INFO] : Checking list integrity. (checkListIntegrity function in SortingAlgorithmV2 class)")
+        keys = ["id", "last_name", "first_name", "name_establishment", "team_number", "license_number"]
         for part in _lists:
             try:
-                if part["id"] == "":
-                    raise IntegrityError
-                if part["last_name"] == "":
-                    raise IntegrityError
-                if part["first_name"] == "":
-                    raise IntegrityError
-                if part["name_establishment"] == "":
-                    raise IntegrityError
-                if part["team_number"] == "":
-                    raise IntegrityError
-                if part["license_number"] == "":
-                    raise IntegrityError
+                for key in keys:
+                    part[key]
+                part_key_nbre = len(part.keys())
+                keys_type_nbre = len(keys)
+                if part_key_nbre != keys_type_nbre:
+                    print("[WARNING] : {} keys give, only {} required. (checkListIntegrity function in SortingAlgorithmV2 class)".format(part_key_nbre, keys_type_nbre))
             except KeyError:
+                print("[ERROR] : KeyError except, raised IntegrityError. (doTraitment function in SortingAlgorithmV2 class)")
                 raise IntegrityError
     def doTeams(self, _list):
+        print("[INFO] : Starting traitment. (doTraitment function in SortingAlgorithmV2 class)")
         def listEstablishments(_list):
+            print("[INFO] : Listing establishments. (listEstablishments function in doTraitment function in SortingAlgorithmV2 class)")
             estab_list = []
             for player in _list:
                 if player[""] not in estab_list: #Definir une fonction avec un seuil d'acceptation
                     estab_list.append(player[""])
             return estab_list
         def determinMaxTeamsByEstablishment(_list, _estab_list):
+            print("[INFO] : Determine max teams by establishments. (determinMaxTeamsByEstablishment function in doTraitment function in SortingAlgorithmV2 class)")
             numbers = {}
             to_return = {}
             for estab in _estab_list:
@@ -69,10 +70,13 @@ class SortingAlgorithmV2():
             teams[player["name_establishment"]][player["team_number"]].append(player)
         return teams
     def countTeams(self, _teams_list):
+        print("[INFO] : Counting team's total number. (countTeams function in SortingAlgorithmV2 class)")
         teams_nbre = 0
         for estab_name in _teams_list.keys():
             teams_nbre += len(_teams_list[estab_name])
         return teams_nbre
+    def composeTeamsFormat(self, _teams_nbre):
+        pass
     def doHens(self, _teams_list):
         pass
 
