@@ -9,7 +9,7 @@ class IntegrityError(Exception):
     pass
 
 class SortingAlgorithmV2():
-    def __init__(self, _list):
+    def __init__(self, _list, t=""):
         pass
     def doTraitment(self, _list):
         print("[INFO] : Starting traitment. (doTraitment function in SortingAlgorithmV2 class)")
@@ -93,8 +93,6 @@ class SortingAlgorithmV2():
     def doHensMatchs(self, _hens):
         pass
 
-        
-
 
 class SortingAlgorithm():
     def __init__(self, *_lists):
@@ -174,8 +172,9 @@ class SortingAlgorithm():
 
         
 
-
+"""
 if __name__ == "__main__":
     raise IntegrityError
     list = ["a", "b"]
     s_a_object = SortingAlgorithm(list)
+"""
