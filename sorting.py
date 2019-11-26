@@ -17,6 +17,7 @@ class SortingAlgorithmV2():
         #teams_nbre = self.countTeams(teams)
         flat_teams_list = self.flattenTeamsList(teams)
         hens_1, hens_2 = self.doHens(flat_teams_list)
+        print("[INFO] : Traitment end, returning values. (doTraitment function in SortingAlgorithmV2 class)")
     def checkListIntegrity(self, _lists):
         print("[INFO] : Checking list integrity. (checkListIntegrity function in SortingAlgorithmV2 class)")
         keys = ["id", "last_name", "first_name", "name_establishment", "team_number", "license_number"]
@@ -29,10 +30,10 @@ class SortingAlgorithmV2():
                 if part_key_nbre != keys_type_nbre:
                     print("[WARNING] : {} keys give, only {} required. (checkListIntegrity function in SortingAlgorithmV2 class)".format(part_key_nbre, keys_type_nbre))
             except KeyError:
-                print("[ERROR] : KeyError except, raised IntegrityError. (doTraitment function in SortingAlgorithmV2 class)")
+                print("[ERROR] : KeyError except, raised IntegrityError. (checkListIntegrity function in SortingAlgorithmV2 class)")
                 raise IntegrityError
     def doTeams(self, _list):
-        print("[INFO] : Starting traitment. (doTraitment function in SortingAlgorithmV2 class)")
+        print("[INFO] : Doing Teams. (doTeams function in SortingAlgorithmV2 class)")
         def listEstablishments(_list):
             print("[INFO] : Listing establishments. (listEstablishments function in doTraitment function in SortingAlgorithmV2 class)")
             estab_list = []
@@ -41,7 +42,7 @@ class SortingAlgorithmV2():
                     estab_list.append(player[""])
             return estab_list
         def determinMaxTeamsByEstablishment(_list, _estab_list):
-            print("[INFO] : Determine max teams by establishments. (determinMaxTeamsByEstablishment function in doTraitment function in SortingAlgorithmV2 class)")
+            print("[INFO] : Determining max teams by establishments. (determinMaxTeamsByEstablishment function in doTraitment function in SortingAlgorithmV2 class)")
             numbers = {}
             to_return = {}
             for estab in _estab_list:
@@ -56,7 +57,6 @@ class SortingAlgorithmV2():
             for estab_name in numbers.keys():
                 to_return[estab_name] = len(numbers[estab_name])
             return to_return
-
         estab_list = listEstablishments(_list)
         teams = {}
         estab_nbre = determinMaxTeamsByEstablishment(_list, estab_list)
@@ -74,12 +74,14 @@ class SortingAlgorithmV2():
             teams_nbre += len(_teams_list[estab_name])
         return teams_nbre
     def flattenTeamsList(self, _teams_list):
+        print("[INFO] : Flatten teams least. (flattenTeamsList function in SortingAlgorithmV2 class)")
         flat_teams_list = []
         for estab in _teams_list.keys():
             for team in _teams_list[estab]:
                 flat_teams_list.append(team)
         return flat_teams_list
     def doHens(self, _flat_teams_list):
+        print("[INFO] : Doing hens. (doHens function in SortingAlgorithmV2 class)")
         hens_1 = []
         hens_2 = []
         for i in range(len(_flat_teams_list)):
