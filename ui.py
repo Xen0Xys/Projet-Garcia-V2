@@ -4,6 +4,10 @@ import sys
 
 #pyinstaller -F -w "ui.py"
 
+class SearchSettingsCanvas(QGroupBox):
+    def __init__(self):
+        super().__init__()
+
 class MainUi(QWidget):
     resized = QtCore.pyqtSignal()
     def __init__(self):
@@ -14,7 +18,7 @@ class MainUi(QWidget):
         self.setStyleSheet(self.style_sheet)
         self.setupWindow()
         self.mainVue()
-        self.resized.connect(self.someFunction)
+        self.resized.connect(self.sayWindowSize)
         if self.fullscreen:
             self.showFullScreen()
         else:
@@ -23,8 +27,9 @@ class MainUi(QWidget):
     def resizeEvent(self, event):
         self.resized.emit()
         return None
-    def someFunction(self):
-        print("Window Resize :", self.geometry().width(), self.geometry().height())
+    def sayWindowSize(self):
+        #print("Window Resize :", self.geometry().width(), self.geometry().height())
+        pass
     def loadStyleSheet(self):
         style_name = "white_style"
         file = open("styles/{}.css".format(style_name), "r")
