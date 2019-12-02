@@ -30,7 +30,7 @@ class SortingAlgorithm():
         print("[INFO] : Traitment end, returning values. (doTraitment function in SortingAlgorithm class)")
     def checkListIntegrity(self, _lists):
         print("[INFO] : Checking list integrity. (checkListIntegrity function in SortingAlgorithm class)")
-        keys = ["id", "last_name", "first_name", "name_establishment", "team_number"]
+        keys = ["id", "last_name", "first_name", "establishment_name", "team_number"]
         for part in _lists:
             try:
                 for key in keys:
@@ -48,8 +48,8 @@ class SortingAlgorithm():
             print("[INFO] : Listing establishments. (listEstablishments function in doTraitment function in SortingAlgorithm class)")
             estab_list = []
             for player in _list:
-                if player["name_establishment"] not in estab_list: #Definir une fonction avec un seuil d'acceptation
-                    estab_list.append(player["name_establishment"])
+                if player["establishment_name"] not in estab_list: #Definir une fonction avec un seuil d'acceptation
+                    estab_list.append(player["establishment_name"])
             return estab_list
         def determinMaxTeamsByEstablishment(_list, _estab_list):
             print("[INFO] : Determining max teams by establishments. (determinMaxTeamsByEstablishment function in doTraitment function in SortingAlgorithm class)")
@@ -59,11 +59,11 @@ class SortingAlgorithm():
                 numbers[estab] = [0]
             for player in _list:
                 try:
-                    numbers[player["name_establishment"]][(player["team_number"]) - 1] += 1
+                    numbers[player["establishment_name"]][(player["team_number"]) - 1] += 1
                 except IndexError:
-                    while len(numbers[player["name_establishment"]]) < player["team_number"]:
-                        numbers[player["name_establishment"]].append(0)
-                    numbers[player["name_establishment"]][(player["team_number"]) - 1] += 1
+                    while len(numbers[player["establishment_name"]]) < player["team_number"]:
+                        numbers[player["establishment_name"]].append(0)
+                    numbers[player["establishment_name"]][(player["team_number"]) - 1] += 1
             for estab_name in numbers.keys():
                 to_return[estab_name] = len(numbers[estab_name])
             return to_return
@@ -75,7 +75,7 @@ class SortingAlgorithm():
             for _ in range(estab_nbre[estab_name]):
                 teams[estab_name].append([])
         for player in _list:
-            teams[player["name_establishment"]][(player["team_number"]) - 1].append(player)
+            teams[player["establishment_name"]][(player["team_number"]) - 1].append(player)
         return teams
     def countTeams(self, _teams_list):
         print("[INFO] : Counting team's total number. (countTeams function in SortingAlgorithm class)")
