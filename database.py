@@ -85,6 +85,22 @@ def verificationData(_data_in_css, _data_in_database):
                 db.close()
                 uptdateDatabase(_data_in_css["Nom"][i], _data_in_database[i], "nom",)
 
+    if  first_name == _data_in_css["N° équipe"]:
+        print("le doc a les meme donne que la base de donné")
+    else:
+        for i in range (len(last_name)):
+            if not last_name[i] == _data_in_css["N° équipe"][i]:
+                db.close()
+                uptdateDatabase(_data_in_css["N° équipe"][i], _data_in_database[i], "N° équipe",)
+
+    if  first_name == _data_in_css["Nom étab."]:
+        print("le doc a les meme donne que la base de donné")
+    else:
+        for i in range (len(last_name)):
+            if not last_name[i] == _data_in_css["Nom étab."][i]:
+                db.close()
+                uptdateDatabase(_data_in_css["Nom étab."][i], _data_in_database[i], "Nom étab.",)
+
 
 def uptdateDatabase(_data_uptdate, _data_in_database, column):
     os.remove("database.db")
